@@ -1,3 +1,9 @@
+/* 
+    Ad: Süleyman DENİZHAN
+    Kullanıcı No: s20030
+    Program Tanımı: Java ile Sayısal Loto Tahmini
+*/
+
 package btspsayisalloto;
 
 import java.util.Arrays;
@@ -11,28 +17,56 @@ public class BtspSayisalLoto {
     
     public static void main(String[] args) {
         
+        boolean tekrar = false;
+        
         JOptionPane.showMessageDialog(null, "Sayısal Loto Tahminlerinizi Girer Misiniz ?");
         
-        //kullanıcı tahminleri alınıyor...
-        for(int i = 0; i <= 5; i++)
+        do
         {
-            kullaniciSayilari[i] = elin_ugurlu_gelsin();
-        }
-        
-        //piyango çekilişi yapılıyor...
-        cikmaz_demeyin_sansinizi_deneyin();
-        
-        //sıralama yapalım
-        Arrays.sort(sansliSayilar);
-        Arrays.sort(kullaniciSayilari);
-        
-        //sonuçlar string ifadeye çevrilip aralarına virgül konuyor...
-        String cikanSayilar = array2string(sansliSayilar);
-        String strKullaniciTahmini = array2string(kullaniciSayilari);
-        
-        //sonuçlar gösteriliyor...
-        JOptionPane.showMessageDialog(null, "Çekilişte Çıkan Sayılar : \n "+ cikanSayilar +" \n Sizin Tahminleriniz : \n " + strKullaniciTahmini);
-        JOptionPane.showMessageDialog(null, ne_tutturduk_acaba(sansliSayilar, kullaniciSayilari));
+            //kullanıcı tahminleri alınıyor...
+            for(int i = 0; i <= 5; i++)
+            {
+                kullaniciSayilari[i] = elin_ugurlu_gelsin();
+            }
+
+            //piyango çekilişi yapılıyor...
+            cikmaz_demeyin_sansinizi_deneyin();
+
+            //sıralama yapalım
+            Arrays.sort(sansliSayilar);
+            Arrays.sort(kullaniciSayilari);
+
+            //sonuçlar string ifadeye çevrilip aralarına virgül konuyor...
+            String cikanSayilar = array2string(sansliSayilar);
+            String strKullaniciTahmini = array2string(kullaniciSayilari);
+
+            //sonuçlar gösteriliyor...
+            JOptionPane.showMessageDialog(null, "Çekilişte Çıkan Sayılar : \n "+ cikanSayilar +" \n Sizin Tahminleriniz : \n " + strKullaniciTahmini);
+            JOptionPane.showMessageDialog(null, ne_tutturduk_acaba(sansliSayilar, kullaniciSayilari));
+            
+            int tekrarOynayalimMi = JOptionPane.showConfirmDialog(null, "Tekrar Oynamak İster misiniz?", "Tekrar Oynayalım mı ?", JOptionPane.YES_NO_OPTION);
+            
+            if (tekrarOynayalimMi == 0)
+            {
+                tekrar = false;
+                array_reset();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "AA Ben Oynamak İstiyordum :( Küstüm :( !");
+                tekrar = true;
+            }
+            
+        } while ( tekrar == false );
+    }
+    
+    /**
+     * Array Dizinleri Yeniden Oluşturarak Sıfırlama Yapıyoruz.
+     */
+    private static void array_reset()
+    {
+        sansliSayilar = new Integer[6];
+        kullaniciSayilari = new Integer[6];
     }
     
     /**
